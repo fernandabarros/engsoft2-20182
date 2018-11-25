@@ -16,7 +16,7 @@
 	<div class="app" id="app">
 
         <!-- aside -->
-        <div id="aside" class="app-aside modal nav-dropdown" th:fragment="aside">
+        <div id="aside" class="app-aside modal nav-dropdown">
             <div class="left navside white dk" layout="column">
                 <div class="navbar navbar-md no-radius mba-blue">
                     <!-- brand -->
@@ -131,7 +131,7 @@
 
         <!-- content -->
         <div id="content" class="app-content box-shadow-z0" role="main">
-            <div class="app-header white box-shadow" th:fragment="header">
+            <div class="app-header white box-shadow">
                 <div class="navbar navbar-toggleable-sm flex-row align-items-center">
                     <!-- Naviation on mobile -->
                     <a data-toggle="modal" data-target="#aside" class="hidden-lg-up mr-3">
@@ -144,7 +144,7 @@
                     <!-- / Page title -->
                 </div>
             </div>
-            <div class="app-footer" th:fragment="footer">
+            <div class="app-footer">
                 <div class="p-2 text-xs">
                     <div class="pull-right text-muted py-1">
                         &copy; Copyright <strong>MATRÍCULAS-BA</strong>
@@ -198,9 +198,10 @@
 									                <label for="city" class="col-sm-2 form-control-label">Cidade</label>
 									                <div class="col-sm-10">
 									                    <select id="city" name="city" class="form-control c-select">
-									                        <option value="" selected>Salvador</option>
-									                        <option value="">Feira de Santana</option>
-									                        <option value="">Camaçari</option>
+									                        <option value="null" selected>Selecione uma Cidade</option>
+									                        <option th:each="city : ${cities}"
+										                            th:value="${city}"
+										                            th:text="${city}"/>
 									                    </select>
 									                </div>
 									            </div>
