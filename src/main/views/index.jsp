@@ -123,7 +123,7 @@
                 </div>
 
                 <div class="no-radius mba-blue mba-logout">
-					<a href="#">
+					<a href="login.jsp">
 						<span>Sair</span>
 					</a>
                 </div>
