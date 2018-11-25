@@ -80,3 +80,51 @@ body{
 textarea {
   resize: none;
 }
+
+.mba-login-app {
+  overflow-x: hidden;
+}
+
+.mba-login-row {
+  height: 100vh;
+}
+
+.mba-login-gradient {
+  display: block;
+  background-image: linear-gradient(to right top, #aa5555, #b8597e, #b068ae, #8a81da, #109bf8);
+  position: relative; overflow-y: hidden;
+}
+
+.mba-login-overlay {
+  position: absolute; top: 0; left: 0; height: 100vh; width: 100%;
+  background-image: url('../img/group.png');
+  background-size: auto;
+  background-position: left 120vh;
+  background-attachment: fixed;
+}
+
+@media screen and (max-width: 767px) {
+  .mba-login-gradient {
+    display: none;
+  }
+}
+
+.mba-login-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mba-login-form > div {
+  width: 65%;
+}
+
+@media screen and (max-width: 767px) {
+  .mba-login-form > div {
+    width: 80%;
+  }
+}
+
+.box-divider {
+  margin: 0;
+}
