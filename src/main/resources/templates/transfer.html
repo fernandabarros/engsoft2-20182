@@ -209,10 +209,7 @@
 									                <label for="neighborhood" class="col-sm-2 form-control-label">Bairro</label>
 									                <div class="col-sm-10">
 									                    <select id="neighborhood" name="neighborhood" class="form-control c-select">
-									                        <option value="" selected>Barbalho</option>
-									                        <option value="">Ondina</option>
-									                        <option value="">Barra</option>
-									                        <option value="">Brotas</option>
+									                        <option value="null" selected>--</option>
 									                    </select>
 									                </div>
 									            </div>
@@ -220,16 +217,14 @@
 									                <label for="school" class="col-sm-2 form-control-label">Escola</label>
 									                <div class="col-sm-10">
 									                    <select id="school" name="school" class="form-control c-select">
-									                        <option value="" selected>Escola Estadual Suzana Imbassahy</option>
-									                        <option value="">Colégio Central da Bahia</option>
-									                        <option value="">Colégio Estadual Odorico Tavares</option>
+									                        <option value="null" selected>--</option>
 									                    </select>
 									                </div>
 									            </div>
 									            <div class="form-group row">
 									                <label for="reason" class="col-sm-2 form-control-label">Motivo</label>
 									                <div class="col-sm-10">
-									                	<textarea id="reason" name="reason" class="form-control" rows="5" th:text="${name}"></textarea>
+									                	<textarea id="reason" name="reason" class="form-control" rows="5"></textarea>
 									                </div>
 									            </div>
 									            <div class="form-group row m-t-md">
@@ -256,5 +251,46 @@
 	<script src="/assets/js/bootstrap.js"></script>
 	<script src="/assets/js/jquery.mask.min.js"></script>
 	<script src="/assets/js/scripts.js"></script>
+    <script>
+        $('#city').on('change', function(event) {
+            event.preventDefault();
+            
+            $.ajax({url: '/getNeighborhoods?city=' + $(this).children("option:selected").val()})
+            .done(function(neighborhoods) {
+            	let neighborhood = $('#neighborhood'), school = $('#school');
+            	neighborhood.empty();
+            	school.empty();
+            	
+            	for (var i = 0; i < neighborhoods.length; i++) {
+            		neighborhood.append('<option value="'+ neighborhoods[i] +'" selected>'+ neighborhoods[i] +'</option>');            	    
+            	}
+            	
+            	neighborhood.append('<option value="null" selected>Selecione um Bairro</option>');
+            	school.append('<option value="null" selected>--</option>');
+            })
+            .fail(function() {
+                window.alert("Um erro ocorreu ao recuperar bairros!");
+            });
+        });
+        
+        $('#neighborhood').on('change', function(event) {
+            event.preventDefault();
+            
+            $.ajax({url: '/getSchools?neighborhood=' + $(this).children("option:selected").val()})
+            .done(function(schools) {
+            	let school = $('#school');
+            	school.empty();
+            	
+            	for (var i = 0; i < schools.length; i++) {
+            		school.append('<option value="'+ schools[i] +'" selected>'+ schools[i] +'</option>');            	    
+            	}
+            	
+            	school.append('<option value="null" selected>Selecione uma Escola</option>');
+            })
+            .fail(function() {
+                window.alert("Um erro ocorreu ao recuperar escolas!");
+            });
+        });
+    </script>
 </body>
 </html>
