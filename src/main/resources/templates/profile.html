@@ -73,7 +73,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="/aluno/transferencia">
                                     <span class="nav-icon">
                                         <i class="fa fa-user"></i>
                                     </span>
@@ -192,29 +192,29 @@
 							  	</div>
 								<div class="box-body">
 									<div class="row">
-										<div class="col-sm-12 col-md-3">
+										<div class="col-sm-12 col-md-4">
 						    				<label class="mba-profile-label">Nome</label>
                                             <p th:text="${name}"></p>
 						    			</div>
-						    			<div class="col-sm-12 col-md-3">
+						    			<div class="col-sm-12 col-md-4">
 						    				<label class="mba-profile-label">Responsável</label>
                                             <p th:text="${responsable}"></p>
 						    			</div>
-						    			<div class="col-sm-12 col-md-3">
+						    			<div class="col-sm-12 col-md-4">
 						    				<label class="mba-profile-label">Telefone</label>
                                             <p th:text="${phone}"></p>
 						    			</div>
 						    		</div>
 						    		<div class="row">
-						    			<div class="col-sm-12 col-md-3">
+						    			<div class="col-sm-12 col-md-4">
                                             <label class="mba-profile-label">Status</label>
                                             <p th:text="${status}"></p>
                                         </div>
-                                        <div class="col-sm-12 col-md-3">
+                                        <div class="col-sm-12 col-md-4">
                                             <label class="mba-profile-label">Escola</label>
                                             <p th:text="${school}"></p>
                                         </div>
-                                        <div class="col-sm-12 col-md-3">
+                                        <div class="col-sm-12 col-md-4">
                                             <label class="mba-profile-label">Série</label>
                                             <p th:text="${grade}"></p>
                                         </div>
@@ -235,46 +235,5 @@
 	<script src="/assets/js/bootstrap.js"></script>
 	<script src="/assets/js/jquery.mask.min.js"></script>
 	<script src="/assets/js/scripts.js"></script>
-    <script>
-        $('#city').on('change', function(event) {
-            event.preventDefault();
-            
-            $.ajax({url: '/getNeighborhoods?city=' + $(this).children("option:selected").val()})
-            .done(function(neighborhoods) {
-            	let neighborhood = $('#neighborhood'), school = $('#school');
-            	neighborhood.empty();
-            	school.empty();
-            	
-            	for (var i = 0; i < neighborhoods.length; i++) {
-            		neighborhood.append('<option value="'+ neighborhoods[i] +'" selected>'+ neighborhoods[i] +'</option>');            	    
-            	}
-            	
-            	neighborhood.append('<option value="null" selected>Selecione um Bairro</option>');
-            	school.append('<option value="null" selected>--</option>');
-            })
-            .fail(function() {
-                window.alert("Um erro ocorreu ao recuperar bairros!");
-            });
-        });
-        
-        $('#neighborhood').on('change', function(event) {
-            event.preventDefault();
-            
-            $.ajax({url: '/getSchools?neighborhood=' + $(this).children("option:selected").val()})
-            .done(function(schools) {
-            	let school = $('#school');
-            	school.empty();
-            	
-            	for (var i = 0; i < schools.length; i++) {
-            		school.append('<option value="'+ schools[i] +'" selected>'+ schools[i] +'</option>');            	    
-            	}
-            	
-            	school.append('<option value="null" selected>Selecione uma Escola</option>');
-            })
-            .fail(function() {
-                window.alert("Um erro ocorreu ao recuperar escolas!");
-            });
-        });
-    </script>
 </body>
 </html>
