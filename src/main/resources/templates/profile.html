@@ -72,7 +72,7 @@
                                     <span class="nav-text">Pré-Matrícula</span>
                                 </a>
                             </li>
-                            <li class="active">
+                            <li>
                                 <a href="#">
                                     <span class="nav-icon">
                                         <i class="fa fa-user"></i>
@@ -187,53 +187,37 @@
 							<div class="box">
 								<!-- specific section -->
 								<div class="box-header dker">
-							    	<h3>Transferência</h3>
-							    	<small>Efetuar transferência por listagem de escola</small>
+							    	<h3>Perfil</h3>
+							    	<small>Visualizar perfil do aluno</small>
 							  	</div>
 								<div class="box-body">
 									<div class="row">
-						    			<div class="col-md-8 offset-md-2">
-						    				<form action="/aluno/perfil" method="POST">
-									            <div class="form-group row">
-									                <label for="city" class="col-sm-2 form-control-label">Cidade</label>
-									                <div class="col-sm-10">
-									                    <select id="city" name="city" class="form-control c-select">
-									                        <option value="null" selected>Selecione uma Cidade</option>
-									                        <option th:each="city : ${cities}"
-										                            th:value="${city}"
-										                            th:text="${city}"/>
-									                    </select>
-									                </div>
-									            </div>
-									            <div class="form-group row">
-									                <label for="neighborhood" class="col-sm-2 form-control-label">Bairro</label>
-									                <div class="col-sm-10">
-									                    <select id="neighborhood" name="neighborhood" class="form-control c-select">
-									                        <option value="null" selected>--</option>
-									                    </select>
-									                </div>
-									            </div>
-									            <div class="form-group row">
-									                <label for="school" class="col-sm-2 form-control-label">Escola</label>
-									                <div class="col-sm-10">
-									                    <select id="school" name="school" class="form-control c-select">
-									                        <option value="null" selected>--</option>
-									                    </select>
-									                </div>
-									            </div>
-									            <div class="form-group row">
-									                <label for="reason" class="col-sm-2 form-control-label">Motivo</label>
-									                <div class="col-sm-10">
-									                	<textarea id="reason" name="reason" class="form-control" rows="5"></textarea>
-									                </div>
-									            </div>
-									            <div class="form-group row m-t-md">
-									                <div class="col-sm-10 offset-sm-2">
-									                    <button type="submit" class="btn btn-fw primary">Comfirmar</button>
-									                </div>
-									            </div>
-						    				</form>
+										<div class="col-sm-12 col-md-3">
+						    				<label class="mba-profile-label">Nome</label>
+                                            <p th:text="${name}"></p>
 						    			</div>
+						    			<div class="col-sm-12 col-md-3">
+						    				<label class="mba-profile-label">Responsável</label>
+                                            <p th:text="${responsable}"></p>
+						    			</div>
+						    			<div class="col-sm-12 col-md-3">
+						    				<label class="mba-profile-label">Telefone</label>
+                                            <p th:text="${phone}"></p>
+						    			</div>
+						    		</div>
+						    		<div class="row">
+						    			<div class="col-sm-12 col-md-3">
+                                            <label class="mba-profile-label">Status</label>
+                                            <p th:text="${status}"></p>
+                                        </div>
+                                        <div class="col-sm-12 col-md-3">
+                                            <label class="mba-profile-label">Escola</label>
+                                            <p th:text="${school}"></p>
+                                        </div>
+                                        <div class="col-sm-12 col-md-3">
+                                            <label class="mba-profile-label">Série</label>
+                                            <p th:text="${grade}"></p>
+                                        </div>
 						    		</div>
 								</div>
 								<!-- specific section -->

@@ -64,7 +64,7 @@ body{
   width: 100%;
 }
 
-.form-control-label {
+.form-control-label, .mba-profile-label {
   color: #109BF8;
   font-weight: 600;
 }
