@@ -56,7 +56,7 @@
                                     <span class="nav-text">Histórico</span>
                                 </a>
                             </li>
-                            <li>
+                            <li class="active">
                                 <a href="/aluno/criar/confirmar">
                                     <span class="nav-icon">
                                         <i class="fa fa-user"></i>
@@ -187,37 +187,43 @@
 							<div class="box">
 								<!-- specific section -->
 								<div class="box-header dker">
-							    	<h3>Perfil</h3>
-							    	<small>Visualizar perfil do aluno</small>
+							    	<h3>Confirmação de Matrícula - <span th:text="${school}"></span></h3>
+							    	<small>Efetuar transferência por listagem de escola</small>
 							  	</div>
 								<div class="box-body">
 									<div class="row">
-										<div class="col-sm-12 col-md-3">
-						    				<label class="mba-profile-label">Nome</label>
-                                            <p th:text="${name}"></p>
+						    			<div class="col-md-8 offset-md-2">
+						    				<form action="/aluno/confirmar" method="POST">
+									           
+                                               <div class="form-group row">
+                                                    <label for="city" class="col-sm-2 form-control-label">Cidade</label>
+                                                    <div class="col-sm-10">
+                                                        <input id="city" name="city" type="text" value="" class="form-control" readonly
+                                                        th:value="${city}"    
+                                                        >
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="neihgborhood" class="col-sm-2 form-control-label">Bairro</label>
+                                                    <div class="col-sm-10">
+                                                        <input id="neihgborhood" name="neihgborhood" type="text" value="" class="form-control" readonly th:value="${neihgborhood}">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="school" class="col-sm-2 form-control-label">Escola</label>
+                                                    <div class="col-sm-10">
+                                                        <input id="school" name="school" type="text" value="" class="form-control" readonly th:value="${school}">
+                                                    </div>
+                                                </div>
+									            <div class="form-group row m-t-md">
+									                <div class="col-sm-10 offset-sm-2">
+									                    <button type="submit" class="btn btn-fw primary">Comfirmar</button>
+									                </div>
+									            </div>
+						    				</form>
 						    			</div>
-						    			<div class="col-sm-12 col-md-3">
-						    				<label class="mba-profile-label">Responsável</label>
-                                            <p th:text="${responsable}"></p>
-						    			</div>
-						    			<div class="col-sm-12 col-md-3">
-						    				<label class="mba-profile-label">Telefone</label>
-                                            <p th:text="${phone}"></p>
-						    			</div>
-						    		</div>
-						    		<div class="row">
-						    			<div class="col-sm-12 col-md-3">
-                                            <label class="mba-profile-label">Status</label>
-                                            <p th:text="${status}"></p>
-                                        </div>
-                                        <div class="col-sm-12 col-md-3">
-                                            <label class="mba-profile-label">Escola</label>
-                                            <p th:text="${school}"></p>
-                                        </div>
-                                        <div class="col-sm-12 col-md-3">
-                                            <label class="mba-profile-label">Série</label>
-                                            <p th:text="${grade}"></p>
-                                        </div>
 						    		</div>
 								</div>
 								<!-- specific section -->
@@ -235,46 +241,5 @@
 	<script src="/assets/js/bootstrap.js"></script>
 	<script src="/assets/js/jquery.mask.min.js"></script>
 	<script src="/assets/js/scripts.js"></script>
-    <script>
-        $('#city').on('change', function(event) {
-            event.preventDefault();
-            
-            $.ajax({url: '/getNeighborhoods?city=' + $(this).children("option:selected").val()})
-            .done(function(neighborhoods) {
-            	let neighborhood = $('#neighborhood'), school = $('#school');
-            	neighborhood.empty();
-            	school.empty();
-            	
-            	for (var i = 0; i < neighborhoods.length; i++) {
-            		neighborhood.append('<option value="'+ neighborhoods[i] +'" selected>'+ neighborhoods[i] +'</option>');            	    
-            	}
-            	
-            	neighborhood.append('<option value="null" selected>Selecione um Bairro</option>');
-            	school.append('<option value="null" selected>--</option>');
-            })
-            .fail(function() {
-                window.alert("Um erro ocorreu ao recuperar bairros!");
-            });
-        });
-        
-        $('#neighborhood').on('change', function(event) {
-            event.preventDefault();
-            
-            $.ajax({url: '/getSchools?neighborhood=' + $(this).children("option:selected").val()})
-            .done(function(schools) {
-            	let school = $('#school');
-            	school.empty();
-            	
-            	for (var i = 0; i < schools.length; i++) {
-            		school.append('<option value="'+ schools[i] +'" selected>'+ schools[i] +'</option>');            	    
-            	}
-            	
-            	school.append('<option value="null" selected>Selecione uma Escola</option>');
-            })
-            .fail(function() {
-                window.alert("Um erro ocorreu ao recuperar escolas!");
-            });
-        });
-    </script>
 </body>
 </html>

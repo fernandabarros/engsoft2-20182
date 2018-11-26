@@ -29,12 +29,33 @@ public class MatriculaController {
 	
 	@RequestMapping(value = "/aluno/perfil", method = RequestMethod.POST)
     public String storeTransfer(@RequestBody String request, Model model) {
-		System.out.println(request);
-        
+
 		model.addAttribute("name", "Fulano da Silva");
 		model.addAttribute("responsable", "Alguém da Silva");
 		model.addAttribute("phone", "(71) 99946-0910");
 		model.addAttribute("status", "Transferência em análise");
+		model.addAttribute("school", "Colégio Central, SSA - BA");
+		model.addAttribute("grade", "1º ano A");
+		
+		return "profile";
+    }
+	
+	@GetMapping("/aluno/criar/confirmar")	
+    public String confirmePage(Model model) {
+		model.addAttribute("school", "Escola Suzanna Imabassahay");
+		model.addAttribute("city", "Salvador");
+		model.addAttribute("neihgborhood", "Barbalho");
+		
+        return "confirmate";
+    }
+	
+	@RequestMapping(value = "/aluno/confirmar", method = RequestMethod.POST)
+    public String storeConfirmate(@RequestBody String request, Model model) {
+        
+		model.addAttribute("name", "Fulano da Silva");
+		model.addAttribute("responsable", "Alguém da Silva");
+		model.addAttribute("phone", "(71) 99946-0910");
+		model.addAttribute("status", "Matrícula Confirmada");
 		model.addAttribute("school", "Colégio Central, SSA - BA");
 		model.addAttribute("grade", "1º ano A");
 		
