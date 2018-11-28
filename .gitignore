@@ -11,6 +11,8 @@
 .springBeans
 .sts4-cache
 
+.trash
+
 ### IntelliJ IDEA ###
 .idea
 *.iws
